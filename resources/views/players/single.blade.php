@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Player')
+@section('title', $player->first_name . ' ' . $player->last_name)
 @section('content')
 <div class="alert alert-primary">
     <p>Player name: {{$player->first_name}} {{$player->last_name}}</p>

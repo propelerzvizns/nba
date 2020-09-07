@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Teams')
+@section('title', $team->name)
 @section('content')
 
 <div class="alert alert-primary">
