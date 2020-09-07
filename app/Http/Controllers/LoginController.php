@@ -7,6 +7,17 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+        return view('login.login');
+    }
+
 
 
     /**
@@ -17,6 +28,10 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string|min:8'
+        ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect('/');
@@ -30,10 +45,6 @@ class LoginController extends Controller
     public function logout(){
         auth()->logout();
         return redirect('/login');
-
-
     } 
-
- 
 
 }

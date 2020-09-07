@@ -64,7 +64,8 @@
         </style>
     </head>
     <body>
-        <a href="/logout">logout</a>
+            <a href="/logout">logout</a>
+            <a href="/registration">register</a>
         <div class="container">
                 @yield('content')
         </div>
