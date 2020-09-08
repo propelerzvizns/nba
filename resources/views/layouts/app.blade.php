@@ -64,11 +64,17 @@
         </style>
     </head>
     <body>
-            <a href="/logout">logout</a>
-            <a href="/registration">register</a>
+
+        @if(auth()->user())
+            <a class="btn btn-primary" href="/logout">logout</a>
+        @else
+            <a class="btn btn-primary" href="/registration">register</a>
+            <a class="btn btn-primary" href="/login">login</a>
+        @endif
+
         <div class="container">
                 @yield('content')
         </div>
-        
+
     </body>
 </html>

@@ -19,9 +19,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/', 'TeamsController@index');
-    Route::get('/teams/{id}', 'TeamsController@show');
+    Route::get('/teams/{id}', 'TeamsController@show')->name('team');
     Route::get('/players/{id}', 'PlayersController@show');
     Route::get('/logout', 'LoginController@logout');
+    Route::post('/comment', 'CommentsController@store');
 });
 
 Route::group(['middleware' => 'guest'], function(){
@@ -29,4 +30,6 @@ Route::group(['middleware' => 'guest'], function(){
     Route::post('/registration', 'RegistrationController@store');
     Route::get('/login', 'LoginController@index')->name('login');
     Route::post('/login', 'LoginController@store');
+
 });
+
