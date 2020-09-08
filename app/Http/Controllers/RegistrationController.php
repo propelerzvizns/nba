@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class RegistrationController extends Controller
 {
@@ -46,10 +47,15 @@ class RegistrationController extends Controller
         ]);
         $hashed = Hash::make($data['password']);
         $data['password'] = $hashed;
-            // dd($data);
+
+
         User::create($data);
+
+        // Mail::to($request->user())->send('sdasdsad');
+
+
         return redirect('/');
-        // return $request;
+
     }
 
     /**

@@ -39,6 +39,7 @@
 
         @foreach($team->comments as $comment)
         <div class="alert alert-dark">
+            <h5>{{$comment->user->name}}</h5>
            <h4>comment: {{$comment->content}}</h4>
             <p >created at:{{$comment->created_at}}</p>
 

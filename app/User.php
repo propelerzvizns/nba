@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -36,4 +36,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // public function sendEmailReminder(Request $request, $id)
+    // {
+    //     $user = User::findOrFail($id);
+
+    //     Mail::send('emails.reminder', ['user' => $user], function ($m) use ($user) {
+    //         $m->from('hello@app.com', 'Your Application');
+
+    //         $m->to($user->email, $user->name)->subject('Your Reminder!');
+    //     });
+    // }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 }
