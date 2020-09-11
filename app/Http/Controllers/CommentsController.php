@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Comment;
+use App\Rules\BadWords;
 
 class CommentsController extends Controller
 {
@@ -38,7 +39,7 @@ class CommentsController extends Controller
         //
 
         $data = $request->validate([
-            'content' => 'required|min:10|string',
+            'content' => ['required', 'min:10', 'string', new BadWords],
             'user_id' => 'required',
             'team_id' => 'required'
         ]);
