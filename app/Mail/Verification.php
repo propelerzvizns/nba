@@ -2,23 +2,26 @@
 
 namespace App\Mail;
 
+use App\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class Verification extends Mailable
 {
     use Queueable, SerializesModels;
+    public $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($token)
+    public function __construct($user)
     {
         //
+        $this->user = $user;
     }
 
     /**
@@ -28,7 +31,10 @@ class Verification extends Mailable
      */
     public function build()
     {
+        // $email = $this->user['email'];
+        // $user = User::where('email' , $email)->get();
+        // dd($user);
 
-        return $this->from('nba@gmail.com')->view('emails.verification');
+        return $this->subject('Acount confirmation')->view('emails.verification');
     }
 }

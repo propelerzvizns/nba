@@ -32,19 +32,20 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required|string|min:8'
         ]);
+        $user = User::where('email', $request->email)->first();
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect('/');
-           
+        if ($user->email_verified_at != null) {
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+                return redirect('/');
+
+            }
         }
-        return redirect('/registration');
-
+        return view('/login/login-failed');
     }
-
 
     public function logout(){
         auth()->logout();
         return redirect('/login');
-    } 
+    }
 
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Carbon\Carbon;
+use App\Mail\Verification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -47,15 +49,24 @@ class RegistrationController extends Controller
         ]);
         $hashed = Hash::make($data['password']);
         $data['password'] = $hashed;
+        $user =  User::create($data);
+        Mail::to($user)->send(new Verification($user));
 
 
-        User::create($data);
+
 
         // Mail::to($request->user())->send('sdasdsad');
 
 
-        return redirect('/');
+        // return redirect('/');
 
+    }
+
+        public function verifyUser($id) {
+            $user = User::findOrFail($id);
+            $user->email_verified_at = new Carbon;
+            $user->save();
+            return redirect('/login');
     }
 
     /**
@@ -103,4 +114,6 @@ class RegistrationController extends Controller
     {
         //
     }
+
+
 }

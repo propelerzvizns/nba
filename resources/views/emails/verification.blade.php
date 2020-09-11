@@ -1,1 +1,9 @@
-<h1>yayay</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Account verification</title>
+</head>
+<body>
+    <a href="{{url('/register/' . $user->id)}}">click here</a>
+</body>
+</html>

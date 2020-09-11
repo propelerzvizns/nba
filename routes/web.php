@@ -28,8 +28,11 @@ Route::group(['middleware' => 'auth'], function(){
 Route::group(['middleware' => 'guest'], function(){
     Route::get('/registration', 'RegistrationController@index');
     Route::post('/registration', 'RegistrationController@store');
+    Route::get('/register/{id}', "RegistrationController@verifyUser");
     Route::get('/login', 'LoginController@index')->name('login');
     Route::post('/login', 'LoginController@store');
 
 });
+
+
 
